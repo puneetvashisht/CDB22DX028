@@ -1,0 +1,65 @@
+#div1 {
+  background-color: blueviolet;
+  width: 100px;
+  height: 100px;
+  border: 20px solid rgb(72, 255, 0);
+}
+
+.same {
+  font-size: large;
+  background-color: rgb(162, 226, 43);
+  width: 5rem;
+  height: 100px;
+  border: 20px solid rgb(255, 0, 247);
+  margin-top: 100px;
+  margin-left: 200px;
+  padding-top: 30px;
+  padding-left: 50px;
+  animation-name: animateDiv;
+  animation-duration: 10s;
+  position: relative;
+}
+
+div:hover {
+  cursor: pointer;
+  background-color: aqua;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: coral;
+  }
+  .same {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+@keyframes animateDiv {
+  0% {
+    background-color: red;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background-color: rgb(102, 255, 0);
+    left: 0px;
+    top: 200px;
+  }
+  50% {
+    background-color: rgb(0, 89, 255);
+    left: 200px;
+    top: 200px;
+  }
+  75% {
+    background-color: rgb(255, 0, 149);
+    left: 200px;
+    top: 0px;
+  }
+  100% {
+    background-color: rgb(255, 0, 0);
+    left: 0px;
+    top: 0px;
+  }
+}
