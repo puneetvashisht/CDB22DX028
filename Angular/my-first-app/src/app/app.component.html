@@ -1,0 +1,19 @@
+<!-- <p>{{ title }}</p> -->
+
+<button
+  class="btn btn-primary"
+  [disabled]="disable === true"
+  (click)="showButton()"
+>
+  {{ show ? "Hide" : "Show" }}
+</button>
+
+<div class="container row" *ngIf="show">
+  <div *ngFor="let course of courses" class="col">
+    <app-card
+      [title]="course.title"
+      [summary]="course.summary"
+      (courseDeleted)="handleDelete($event)"
+    ></app-card>
+  </div>
+</div>
