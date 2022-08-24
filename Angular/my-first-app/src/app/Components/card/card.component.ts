@@ -8,7 +8,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardComponent implements OnInit {
   @Input('title') title: string = 'Default Title';
   @Input('summary') summary: string = 'Default Summary';
+  @Input('shared') shared: boolean = false;
   @Output('courseDeleted') courseDeleted: EventEmitter<string> =
+    new EventEmitter<string>();
+  @Output('courseShared') courseShared: EventEmitter<string> =
     new EventEmitter<string>();
 
   constructor() {}
@@ -17,5 +20,8 @@ export class CardComponent implements OnInit {
 
   deleteCourse() {
     this.courseDeleted.emit(this.title);
+  }
+  sharedCourse() {
+    this.courseShared.emit(this.title);
   }
 }

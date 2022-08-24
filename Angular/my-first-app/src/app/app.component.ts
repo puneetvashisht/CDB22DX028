@@ -8,12 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   disable: boolean = false;
   show: boolean = false;
+  notify: boolean = false;
+  title: string = '';
+  summary: string = '';
 
   courses = [
-    { title: 'Angular', summary: 'Framework from Google' },
-    { title: 'React', summary: 'Library from facebook' },
-    { title: 'Nodejs', summary: 'Server-side JS' },
-    { title: 'Ember', summary: 'Open-source Frontend' },
+    { title: 'Angular', summary: 'Framework from Google', shared: false },
+    { title: 'React', summary: 'Library from facebook', shared: false },
+    { title: 'Nodejs', summary: 'Server-side JS', shared: false },
+    { title: 'Ember', summary: 'Open-source Frontend', shared: false },
   ];
 
   disableButton() {
@@ -29,5 +32,25 @@ export class AppComponent {
       (course) => course.title !== title
     );
     this.courses = filteredCourseList;
+  }
+
+  handleShare(title: string) {
+    this.courses.map((course) => {
+      if (course.title === title) {
+        course.shared = true;
+      }
+    });
+  }
+
+  handleNotify() {
+    this.notify = true;
+  }
+
+  addCourse() {
+    this.courses.push({
+      title: this.title,
+      summary: this.summary,
+      shared: false,
+    });
   }
 }

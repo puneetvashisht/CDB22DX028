@@ -1,5 +1,30 @@
 <!-- <p>{{ title }}</p> -->
 
+<div class="form-floating mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="floatingInput"
+    placeholder="name@example.com"
+    [(ngModel)]="title"
+  />
+  <label for="floatingInput">Title</label>
+</div>
+<div class="form-floating">
+  <input
+    type="text"
+    class="form-control"
+    id="floatingPassword"
+    placeholder="Password"
+    [(ngModel)]="summary"
+  />
+  <label for="floatingPassword">Summary</label>
+</div>
+<button class="btn btn-primary" (click)="addCourse()">Add Course</button>
+
+<!-- <p>{{ title }}</p>
+<p>{{ summary }}</p> -->
+
 <button
   class="btn btn-primary"
   [disabled]="disable === true"
@@ -8,12 +33,22 @@
   {{ show ? "Hide" : "Show" }}
 </button>
 
+<!-- <button
+  class="ms-3 btn"
+  (click)="handleNotify()"
+  [ngClass]="notify ? 'btn-success' : 'btn-info'"
+>
+  Notify
+</button> -->
+
 <div class="container row" *ngIf="show">
   <div *ngFor="let course of courses" class="col">
     <app-card
       [title]="course.title"
       [summary]="course.summary"
+      [shared]="course.shared"
       (courseDeleted)="handleDelete($event)"
+      (courseShared)="handleShare($event)"
     ></app-card>
   </div>
 </div>
