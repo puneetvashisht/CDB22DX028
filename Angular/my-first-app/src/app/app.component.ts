@@ -11,6 +11,7 @@ export class AppComponent {
   notify: boolean = false;
   title: string = '';
   summary: string = '';
+  value: string = '';
 
   courses = [
     { title: 'Angular', summary: 'Framework from Google', shared: false },
