@@ -1,0 +1,10 @@
+.has-success .form-control {
+  border-color: #5cb85c;
+}
+.has-danger .form-control {
+  border-color: #ff314d;
+}
+
+.has-danger .form-control-feedback {
+  color: #ff314d;
+}

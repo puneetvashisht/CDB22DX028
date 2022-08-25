@@ -1,0 +1,124 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <fieldset formGroupName="name">
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            firstname?.invalid && (firstname?.dirty || firstname?.touched),
+          'has-success':
+            firstname?.valid && (firstname?.dirty || firstname?.touched)
+        }"
+      >
+        <label>First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          required
+          formControlName="firstName"
+        />
+        <div
+          class="form-control-feedback"
+          *ngIf="firstname?.invalid && firstname?.touched"
+        >
+          <p *ngIf="firstname?.errors?.['required']">
+            * First name is required
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-danger':
+            lastname?.invalid && (lastname?.dirty || lastname?.touched),
+          'has-success':
+            lastname?.valid && (lastname?.dirty || lastname?.touched)
+        }"
+      >
+        <label>Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          required
+          formControlName="lastName"
+        />
+        <div
+          class="form-control-feedback"
+          *ngIf="lastname?.invalid && lastname?.touched"
+        >
+          <p *ngIf="lastname?.errors?.['required']">* Last name is required</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <div
+      class="form-group"
+      [ngClass]="{
+        'has-danger': email?.invalid && (email?.dirty || email?.touched),
+        'has-success': email?.valid && (email?.dirty || email?.touched)
+      }"
+    >
+      <label>Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        required
+        pattern="[^ @]*@[^ @]*"
+        formControlName="email"
+      />
+      <div
+        class="form-control-feedback"
+        *ngIf="email?.errors && (email?.dirty || email?.touched)"
+      >
+        <p *ngIf="email?.errors?.['required']">* Email is required</p>
+        <p *ngIf="email?.errors?.['pattern']">
+          * Email must contain at least the @ character
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="form-group"
+      [ngClass]="{
+        'has-danger':
+          password?.invalid && (password?.dirty || password?.touched),
+        'has-success': password?.valid && (password?.dirty || password?.touched)
+      }"
+    >
+      <label>Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        required
+        minlength="8"
+        formControlName="password"
+      />
+      <div
+        class="form-control-feedback"
+        *ngIf="password?.errors && (password?.dirty || password?.touched)"
+      >
+        <p *ngIf="password?.errors?.['required']">* Password is required</p>
+        <p *ngIf="password?.errors?.['minlength']">
+          * Password must be at least 8 characters long
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Language</label>
+      <select class="form-control" name="language" formControlName="language">
+        <option value="">Please select a language</option>
+        <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4 mb-5">Submit</button>
+
+    <pre>{{ profileForm.value | json }}</pre>
+  </form>
+</div>
