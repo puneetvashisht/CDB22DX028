@@ -1,0 +1,28 @@
+<div class="row container" *ngFor="let course of courses">
+  <div
+    class="card"
+    style="width: 18rem"
+    [ngStyle]="
+      course.shared
+        ? { 'background-color': 'green' }
+        : { 'background-color': 'red' }
+    "
+  >
+    <img src="https://via.placeholder.com/150" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ course.title }}</h5>
+      <p class="card-text">
+        {{ course.summary }}
+      </p>
+      <a [routerLink]="'/view/' + course.id" class="btn btn-primary"
+        >Show Details</a
+      >
+      <button class="btn btn-primary" (click)="sharedCourse(course.id)">
+        Share
+      </button>
+      <button class="btn btn-danger" (click)="deleteCourse(course.id)">
+        X
+      </button>
+    </div>
+  </div>
+</div>

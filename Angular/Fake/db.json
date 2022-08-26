@@ -21,8 +21,14 @@
     {
       "title": "Test",
       "summary": "Test Summary",
-      "shared": false,
+      "shared": true,
       "id": 5
+    },
+    {
+      "title": "test2",
+      "summary": "Test Summary",
+      "shared": false,
+      "id": 6
     }
   ]
 }

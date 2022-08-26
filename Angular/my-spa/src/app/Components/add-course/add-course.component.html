@@ -1,0 +1,21 @@
+<div class="form-floating mb-3">
+  <input
+    type="text"
+    class="form-control"
+    id="floatingInput"
+    placeholder="name@example.com"
+    [(ngModel)]="title"
+  />
+  <label for="floatingInput">Title</label>
+</div>
+<div class="form-floating">
+  <input
+    type="text"
+    class="form-control"
+    id="floatingPassword"
+    placeholder="Password"
+    [(ngModel)]="summary"
+  />
+  <label for="floatingPassword">Summary</label>
+</div>
+<button class="m-3 btn btn-primary" (click)="addCourse()">Add Course</button>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/course.service';
 
 @Component({
@@ -7,25 +7,25 @@ import { CourseService } from 'src/app/course.service';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
-  @Input('title') title: string = 'Default Title';
-  @Input('summary') summary: string = 'Default Summary';
-  @Input('shared') shared: boolean = false;
-  @Input('id') id: number = 0;
+  courses: any = [];
 
   constructor(public courseService: CourseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.courseService.fetchCourses().subscribe((data) => {
+      console.log('response', data);
+      this.courses = data;
+    });
+  }
 
-  deleteCourse() {
+  deleteCourse(id: number) {
     this.courseService
-      .deleteCourse(this.id)
+      .deleteCourse(id)
       .subscribe((res: any) => console.log('delete response', res));
   }
-  sharedCourse() {
+  sharedCourse(id: number) {
     this.courseService
-      .updateCourse(this.id, {
-        title: this.title,
-        summary: this.summary,
+      .updateCourse(id, {
         shared: true,
       })
       .subscribe((res: any) => console.log('update response', res));
