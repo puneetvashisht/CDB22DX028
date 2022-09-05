@@ -14,13 +14,13 @@
       <p class="card-text">
         {{ course.summary }}
       </p>
-      <a [routerLink]="'/view/' + course.id" class="btn btn-primary"
+      <a [routerLink]="'/view/' + course._id" class="btn btn-primary"
         >Show Details</a
       >
-      <button class="btn btn-primary" (click)="sharedCourse(course.id)">
+      <button class="btn btn-primary" (click)="sharedCourse(course._id)">
         Share
       </button>
-      <button class="btn btn-danger" (click)="deleteCourse(course.id)">
+      <button class="btn btn-danger" (click)="deleteCourse(course._id)">
         X
       </button>
     </div>

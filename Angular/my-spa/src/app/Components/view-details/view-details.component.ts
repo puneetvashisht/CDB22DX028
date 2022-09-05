@@ -8,8 +8,9 @@ import { CourseService } from 'src/app/course.service';
   styleUrls: ['./view-details.component.css'],
 })
 export class ViewDetailsComponent implements OnInit {
-  title?: string;
-  summary?: string;
+  // title?: string;
+  // summary?: string;
+  course: any = {};
   constructor(
     public courseService: CourseService,
     private route: ActivatedRoute
@@ -20,8 +21,8 @@ export class ViewDetailsComponent implements OnInit {
       console.log('params', params);
 
       this.courseService.fetchSingleCourses(params.id).subscribe((res: any) => {
-        this.title = res.title;
-        this.summary = res.summary;
+        console.log(res);
+        this.course = res;
       });
     });
   }

@@ -20,7 +20,7 @@ export class AddCourseComponent implements OnInit {
     this.courseService
       .addCourse({
         title: this.title,
-        summary: this.summary,
+        description: this.summary,
         shared: false,
       })
       .subscribe((res) => console.log('add course', res));

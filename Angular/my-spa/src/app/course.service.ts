@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseURL = 'http://localhost:8000/courses/';
+const baseURL = 'http://localhost:3000/';
 
 @Injectable({
   providedIn: 'root',
@@ -10,21 +10,21 @@ export class CourseService {
   constructor(public http: HttpClient) {}
 
   fetchCourses() {
-    return this.http.get(baseURL);
+    return this.http.get(baseURL + 'course');
   }
   fetchSingleCourses(id: number) {
-    return this.http.get(baseURL + id);
+    return this.http.get(baseURL + 'course/' + id);
   }
 
   addCourse(course: any) {
-    return this.http.post(baseURL, course);
+    return this.http.post(baseURL + 'course', course);
   }
 
   deleteCourse(id: number) {
-    return this.http.delete(baseURL + id);
+    return this.http.delete(baseURL + 'delete/' + id);
   }
 
-  updateCourse(id: number, course: any) {
-    return this.http.patch(baseURL + id, course);
+  updateCourse(route: string, id: number, course: any) {
+    return this.http.put(baseURL + route + id, course);
   }
 }
