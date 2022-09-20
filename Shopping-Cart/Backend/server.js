@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 const User = require("./models/user");
 const connectDB = require("./config/db");
+const cors = require("cors");
+const Product = require("./models/product");
 
 app.use(express.json());
+app.use(cors());
+
 connectDB();
 // GET API
 app.get("/test", (req, res) => {
@@ -19,6 +23,7 @@ app.post("/register", async (req, res) => {
   res.json({ returnedToken: token });
 });
 
+// Login..
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const enteredMail = email;
@@ -37,6 +42,24 @@ app.post("/login", async (req, res) => {
   } else {
     res.send("Invalid Email ID");
   }
+});
+
+// Creating a product..
+app.post("/product", async (req, res) => {
+  const product = await Product.create(req.body);
+  res.json({ product, created: true });
+});
+
+// Getting all the products..
+app.get("/product", async (req, res) => {
+  const products = await Product.find();
+  res.json({ products });
+});
+
+// Fetch a product by id..
+app.get("/product/:productId", async (req, res) => {
+  const product = await Product.findById(req.params.productId);
+  res.json({ product });
 });
 
 app.listen(3000, () => {

@@ -24,7 +24,7 @@ const UserSchema = new Schema({
 // Binding up some methods to the userschema for the succesful registration and login of a user..
 // Hashing the password on user registration...
 UserSchema.pre("save", async function () {
-  // SOme time consuming stuff
+  // Some time consuming stuff
   // Async functions are not executed on main-thread because they may block the main-thread.
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
