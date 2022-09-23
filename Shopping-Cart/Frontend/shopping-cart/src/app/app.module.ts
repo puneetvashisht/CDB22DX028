@@ -7,6 +7,9 @@ import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { ProductsComponent } from './Components/Product/products/products.component';
+import { ProductDetailComponent } from './Components/Product/product-detail/product-detail.component';
+import { ProductContainerComponent } from './Components/Product/product-container/product-container.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
+    ProductsComponent,
+    ProductDetailComponent,
+    ProductContainerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
