@@ -15,6 +15,11 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Please enter a password"],
   },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -38,7 +43,7 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
 // Generating the Token to be sent to client on register and login..
 UserSchema.methods.getSignedJwtToken = function () {
   const token = jwt.sign(
-    { id: this._id },
+    { id: this._id, role: this.role },
     "This secret key is used to encrypt the payload and generate the token"
   );
 

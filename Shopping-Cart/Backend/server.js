@@ -4,6 +4,7 @@ const User = require("./models/user");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const Product = require("./models/product");
+const authorize = require("./middlewares/protect");
 const protect = require("./middlewares/protect");
 
 app.use(express.json());
@@ -46,8 +47,9 @@ app.post("/login", async (req, res) => {
 });
 
 // Creating a product..
+
 // We need to protect this route. For that, we will authenticate the incoming token, only then it can create a product..
-app.post("/product", protect, async (req, res) => {
+app.post("/product", protect, authorize, async (req, res) => {
   console.log("headers --- ", req.headers.authorization);
   const product = await Product.create(req.body);
   res.json({ product, created: true });
