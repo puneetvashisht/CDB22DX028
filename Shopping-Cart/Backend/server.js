@@ -67,6 +67,39 @@ app.get("/product/:productId", async (req, res) => {
   res.json({ product });
 });
 
+// ########## Creating API for adding products to the cart of user #################
+// ###################################
+// #############
+
+app.post("/assignProductToUser/:productId", protect, async (req, res, next) => {
+  // const userFounded = await User.findById(req.user.id);
+  // console.log("userFounded --- ", userFounded);
+
+  const user = await User.findById(req.user.id).select("cartProducts");
+  // console.log()
+
+  // Pushing product to the user's cart..
+  user.cartProducts.push(req.params.productId);
+
+  // Updating the cartProducts of a specific user...
+  const userToBeUpdated = await User.findByIdAndUpdate(req.user.id, {
+    cartProducts: user.cartProducts,
+  });
+
+  res.json({ success: true, userToBeUpdated });
+});
+
+// ########## Creating API for fetching the products in cart of specific user #################
+// ###################################
+// #############
+
+app.get("/userProducts", protect, async (req, res, next) => {
+  const user = await User.findById(req.user.id)
+    .select("cartProducts")
+    .populate("cartProducts");
+  res.json(user.cartProducts);
+});
+
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
 });
