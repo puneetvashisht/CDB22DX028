@@ -17,4 +17,16 @@ export class CartComponent implements OnInit {
       this.userProducts = res;
     });
   }
+
+  buyProducts() {
+    this.productService.buyAllItems().subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+        this.productService.getCartProducts().subscribe((res) => {
+          console.log(res);
+          this.userProducts = res;
+        });
+      }
+    });
+  }
 }

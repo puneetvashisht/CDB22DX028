@@ -100,6 +100,12 @@ app.get("/userProducts", protect, async (req, res, next) => {
   res.json(user.cartProducts);
 });
 
+app.delete("/buyAll", protect, async (req, res) => {
+  // const user = await User.findById(req.user.id).select("cartProducts");
+  const user = await User.findByIdAndUpdate(req.user.id, { cartProducts: [] });
+  res.json({ success: true });
+});
+
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
 });

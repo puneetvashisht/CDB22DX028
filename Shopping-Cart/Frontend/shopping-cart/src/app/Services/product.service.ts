@@ -23,4 +23,8 @@ export class ProductService {
   getCartProducts() {
     return this.http.get(Base_URL + 'userProducts');
   }
+
+  buyAllItems() {
+    return this.http.delete(Base_URL + 'buyAll');
+  }
 }
